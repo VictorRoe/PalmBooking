@@ -3,8 +3,6 @@ package com.backend.palmbooking.Controller;
 import com.backend.palmbooking.Model.Category;
 import com.backend.palmbooking.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +37,15 @@ public class CategoryController {
     }
 
     @PutMapping
-    public Category editCategory(@RequestBody Category category) {
-        return categoryService.editCategory(category);
+    public ResponseEntity<Void> editCategory(@RequestBody Category category) {
+        Optional<Category> buscarCategoria = categoryService.getCategoryByID(category.getId());
+
+        if (buscarCategoria.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        categoryService.editCategory(category);
+        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
