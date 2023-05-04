@@ -3,6 +3,7 @@ package com.backend.palmbooking.Service;
 import com.backend.palmbooking.Model.Category;
 import com.backend.palmbooking.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,8 +46,6 @@ public class CategoryService {
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()) {
             categoryRepository.deleteById(id);
-        } else {
-            System.out.println("No existe id:" + id);
         }
     }
 
