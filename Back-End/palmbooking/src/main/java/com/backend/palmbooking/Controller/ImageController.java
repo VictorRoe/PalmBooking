@@ -1,9 +1,7 @@
 package com.backend.palmbooking.Controller;
 
 import com.backend.palmbooking.Model.Image;
-import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Service.ImageService;
-import com.backend.palmbooking.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
