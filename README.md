@@ -31,7 +31,7 @@ El proyecto está en fase de desarrollo.
 
 ## Autores
 
-- Victor José Rangel: Desarrollador Back-End (@VictorRoe)
+- Victor José Rangel: Desarrollador Back-End ([@VictorRoe](https://github.com/VictorRoe))
 
 ## Documentación adicional
 
