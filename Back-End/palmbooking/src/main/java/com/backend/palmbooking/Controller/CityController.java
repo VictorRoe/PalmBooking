@@ -1,9 +1,7 @@
 package com.backend.palmbooking.Controller;
 
 import com.backend.palmbooking.Model.City;
-import com.backend.palmbooking.Model.Image;
 import com.backend.palmbooking.Service.CityService;
-import com.backend.palmbooking.Service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +12,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/City")
 public class CityController {
-
     @Autowired
     private CityService cityService;
 
