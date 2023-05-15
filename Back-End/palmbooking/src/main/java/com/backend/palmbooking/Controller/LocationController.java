@@ -1,11 +1,10 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Model.Category;
+
 import com.backend.palmbooking.Model.Location;
 import com.backend.palmbooking.Service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class LocationController {
     public ResponseEntity<Void> editLocation(@RequestBody Location location) {
         Optional<Location> searchLocation = locationService.getLocationByID(location.getId());
 
-        if (searchLocation.isEmpty()){
+        if (searchLocation.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
