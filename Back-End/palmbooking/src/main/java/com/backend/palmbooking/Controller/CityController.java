@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/City")
+@RequestMapping("api/city")
 public class CityController {
     @Autowired
     private CityService cityService;
