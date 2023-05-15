@@ -1,6 +1,5 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Model.Category;
 import com.backend.palmbooking.Model.User;
 import com.backend.palmbooking.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
