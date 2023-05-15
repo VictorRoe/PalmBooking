@@ -1,7 +1,6 @@
 package com.backend.palmbooking.Service;
 
 import com.backend.palmbooking.Model.City;
-import com.backend.palmbooking.Model.Image;
 import com.backend.palmbooking.Repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
