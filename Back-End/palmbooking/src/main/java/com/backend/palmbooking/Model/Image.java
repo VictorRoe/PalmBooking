@@ -3,7 +3,7 @@ package com.backend.palmbooking.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "image")
+@Table(name = "images")
 public class Image {
 
     @Id

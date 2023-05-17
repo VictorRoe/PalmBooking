@@ -3,7 +3,7 @@ package com.backend.palmbooking.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -18,6 +18,10 @@ public class Product {
 
     @Column(name = "image", length = 200)
     private String image;
+
+    @ManyToOne
+    @JoinColumn(name = "category", referencedColumnName = "id")
+    private Category category;
 
     public Product() {
     }

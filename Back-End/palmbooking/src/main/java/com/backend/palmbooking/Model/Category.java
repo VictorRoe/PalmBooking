@@ -3,8 +3,10 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -16,6 +18,9 @@ public class Category {
     private String description;
     @Column(name = "image")
     private String image;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
     public Category() {
     }
