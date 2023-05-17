@@ -4,7 +4,7 @@ package com.backend.palmbooking.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "characteristic")
+@Table(name = "characteristics")
 public class Characteristic {
 
     @Id

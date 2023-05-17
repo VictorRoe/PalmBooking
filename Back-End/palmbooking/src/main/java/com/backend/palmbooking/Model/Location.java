@@ -2,8 +2,10 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "location")
+@Table(name = "locations")
 public class Location {
 
     @Id
@@ -22,6 +24,9 @@ public class Location {
         this.length = length;
         this.latitude = latitude;
     }
+
+    @OneToMany(mappedBy = "location")
+    private List<Product> products;
 
     public Long getId() {
         return id;

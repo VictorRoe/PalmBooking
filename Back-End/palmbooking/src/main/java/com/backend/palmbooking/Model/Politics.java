@@ -3,7 +3,7 @@ package com.backend.palmbooking.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "politics")
+@Table (name = "policies")
 public class Politics {
 
     @Id

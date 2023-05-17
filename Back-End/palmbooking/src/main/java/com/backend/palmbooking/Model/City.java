@@ -2,8 +2,10 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "city")
+@Table(name = "cities")
 public class City {
 
     @Id
@@ -11,6 +13,9 @@ public class City {
     private Long id;
     @Column(name = "city_name", length = 50)
     private String city;
+
+    @OneToMany(mappedBy = "city")
+    private List<Product>product;
 
     public City() {
     }
