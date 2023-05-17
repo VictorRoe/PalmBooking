@@ -2,6 +2,8 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "rooms")
 public class Room {
@@ -13,6 +15,9 @@ public class Room {
     private String roomType;
     @Column
     private Integer roomQuantity;
+
+    @OneToMany(mappedBy = "room")
+    private List<Product> products;
 
     public Room() {
     }
