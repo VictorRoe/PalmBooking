@@ -13,8 +13,8 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     /**
-     Consulta SQL donde si seleccionas una categoria,
-     te retorna los productos de dicha categoria seleccionado
+     Query SQL if select one category id,
+     will return all the products of that category
      **/
     @Query(
             value = "SELECT p.id,p.description,p.image,p.title FROM categories c" +
