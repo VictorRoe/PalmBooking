@@ -1,6 +1,7 @@
 package com.backend.palmbooking.Service;
 
 import com.backend.palmbooking.Model.Category;
+import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,10 @@ public class CategoryService {
         if (category.isPresent()) {
             categoryRepository.deleteById(id);
         }
+    }
+
+    public List<Category> findProductByCategoryID(Long id){
+        return categoryRepository.findProductByCategoryID(id);
     }
 
 

@@ -1,6 +1,7 @@
 package com.backend.palmbooking.Controller;
 
 import com.backend.palmbooking.Model.Category;
+import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +59,15 @@ public class CategoryController {
         categoryService.deleteCategoryByID(id);
         return ResponseEntity.status(204).build();
     }
+
+//    GET Category by category_id(product's table)
+
+    @GetMapping("/{id_category}/product")
+    public List<Category> findByCategoryID(@PathVariable("id_category") Long id) {
+        return categoryService.findProductByCategoryID(id);
+    }
+
+
 
 
 }
