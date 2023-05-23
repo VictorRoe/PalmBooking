@@ -1,8 +1,7 @@
 package com.backend.palmbooking.Service;
 
-import com.backend.palmbooking.Exception.ProductNotFoundExcepction;
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Category;
-import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +23,12 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryByID(Long id) throws ProductNotFoundExcepction {
+    public Category getCategoryByID(Long id) throws GlobalExcepction {
         Optional<Category> searchCategories = categoryRepository.findById(id);
         if (searchCategories.isPresent()){
             return searchCategories.get();
         } else {
-            throw new ProductNotFoundExcepction("ID NOT FOUND");
+            throw new GlobalExcepction("ID NOT FOUND");
         }
     }
 
@@ -37,22 +36,22 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public Category editCategory(Category category) throws ProductNotFoundExcepction {
+    public Category editCategory(Category category) throws GlobalExcepction {
         Optional<Category> editCategory = categoryRepository.findById(category.getId());
         if (editCategory.isPresent()) {
             return categoryRepository.save(category);
         } else {
-            throw new ProductNotFoundExcepction("ID NOT FOUND");
+            throw new GlobalExcepction("ID NOT FOUND");
         }
 
     }
 
-    public void deleteCategoryByID(Long id) throws ProductNotFoundExcepction {
+    public void deleteCategoryByID(Long id) throws GlobalExcepction {
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()) {
             categoryRepository.deleteById(id);
         } else {
-            throw new ProductNotFoundExcepction("ID NOT FOUND");
+            throw new GlobalExcepction("ID NOT FOUND");
         }
     }
 

@@ -4,7 +4,6 @@ package com.backend.palmbooking.Model;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "categories")

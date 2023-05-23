@@ -1,6 +1,8 @@
 package com.backend.palmbooking.Service;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Characteristic;
+import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Repository.CharacteristicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,29 +21,35 @@ public class CharacteristicService {
         return characteristicRepository.findAll();
     }
 
-    public Optional<Characteristic> getCharacteristicByID(Long id) {
-        return characteristicRepository.findById(id);
+    public Characteristic getCharacteristicByID(Long id) throws GlobalExcepction {
+        Optional<Characteristic> searchCharacteristic = characteristicRepository.findById(id);
+        if (searchCharacteristic.isPresent()){
+            return searchCharacteristic.get();
+        } else {
+            throw new GlobalExcepction("ID NOT FOUND");
+        }
     }
 
     public void addCharacteristic(Characteristic characteristic) {
         characteristicRepository.save(characteristic);
     }
 
-    public Characteristic editCharacteristic(Characteristic characteristic) {
+    public Characteristic editCharacteristic(Characteristic characteristic) throws GlobalExcepction {
         Optional<Characteristic> editCharacteristic = characteristicRepository.findById(characteristic.getId());
-
         if (editCharacteristic.isPresent()) {
             return characteristicRepository.save(characteristic);
         } else {
-            System.out.println("No se encontro una id para editar");
+            throw new GlobalExcepction("ID NOT FOUND");
         }
-        return characteristic;
+
     }
 
-    public void deleteCharacteristicByID(Long id) {
+    public void deleteCharacteristicByID(Long id) throws GlobalExcepction {
         Optional<Characteristic> characteristic = characteristicRepository.findById(id);
         if (characteristic.isPresent()) {
             characteristicRepository.deleteById(id);
+        } else {
+            throw new GlobalExcepction("ID NOT FOUND");
         }
     }
 }

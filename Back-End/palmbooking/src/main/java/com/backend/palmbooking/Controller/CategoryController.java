@@ -1,8 +1,7 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.ProductNotFoundExcepction;
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Category;
-import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/category")
@@ -30,7 +28,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryByID(@PathVariable Long id) throws ProductNotFoundExcepction {
+    public ResponseEntity<Category> getCategoryByID(@PathVariable Long id) throws GlobalExcepction {
         Category category = categoryService.getCategoryByID(id);
         if (category == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -45,7 +43,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<Category> editCategory(@RequestBody Category category) throws ProductNotFoundExcepction {
+    public ResponseEntity<Category> editCategory(@RequestBody Category category) throws GlobalExcepction {
         Category searchCategory = categoryService.getCategoryByID(category.getId());
         if (searchCategory == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -56,7 +54,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategoryByID(@PathVariable Long id) throws ProductNotFoundExcepction {
+    public ResponseEntity<Void> deleteCategoryByID(@PathVariable Long id) throws GlobalExcepction {
         Category searchCategory = categoryService.getCategoryByID(id);
         if (searchCategory == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

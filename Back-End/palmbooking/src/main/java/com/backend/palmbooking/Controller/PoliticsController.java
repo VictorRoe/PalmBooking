@@ -1,13 +1,14 @@
 package com.backend.palmbooking.Controller;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Politics;
 import com.backend.palmbooking.Service.PoliticsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/Policy")
@@ -17,40 +18,43 @@ public class PoliticsController {
     private PoliticsService politicsService;
 
     @GetMapping
-    public List<Politics> getPolicy() {
+    public List<Politics> getPolitics() {
         return politicsService.getPolicy();
     }
 
     @GetMapping("/{id}")
-    public Optional<Politics> getPolicyByID(@PathVariable Long id){
-        return politicsService.getPolicyByID(id);
+    public ResponseEntity<Politics> getPoliticsByID(@PathVariable Long id) throws GlobalExcepction {
+        Politics politics = politicsService.getPolicyID(id);
+        if (politics == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(politics);
+        }
     }
 
     @PostMapping
-    public void addPolicy(@RequestBody Politics politics){
+    public void addPolitics(@RequestBody Politics politics) {
         politicsService.addPolicy(politics);
     }
 
     @PutMapping
-    public ResponseEntity<Void> editPolicy(@RequestBody Politics politics) {
-        Optional<Politics> searchPolicy = politicsService.getPolicyByID(politics.getId());
-
-        if (searchPolicy.isEmpty()){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Politics> editPolitics(@RequestBody Politics politics) throws GlobalExcepction {
+        Politics searchPolitics = politicsService.getPolicyID(politics.getId());
+        if (searchPolitics == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(searchPolitics);
         }
 
-        politicsService.editPolicy(politics);
-        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePolicyByID(@PathVariable Long id) {
-        Optional<Politics> searchPolicy = politicsService.getPolicyByID(id);
-
-        if (searchPolicy.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deletePoliticsByID(@PathVariable Long id) throws GlobalExcepction {
+        Politics searchPolitics = politicsService.getPolicyID(id);
+        if (searchPolitics == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         politicsService.deletePolicyByID(id);
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.noContent().build();
     }
 }

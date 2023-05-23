@@ -1,14 +1,15 @@
 package com.backend.palmbooking.Controller;
 
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Location;
 import com.backend.palmbooking.Service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/location")
@@ -23,8 +24,13 @@ public class LocationController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Location> getLocationByID(@PathVariable Long id) {
-        return locationService.getLocationByID(id);
+    public ResponseEntity<Location> getLocationByID(@PathVariable Long id) throws GlobalExcepction {
+        Location location = locationService.getLocationByID(id);
+        if (location == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(location);
+        }
     }
 
     @PostMapping
@@ -33,25 +39,23 @@ public class LocationController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> editLocation(@RequestBody Location location) {
-        Optional<Location> searchLocation = locationService.getLocationByID(location.getId());
-
-        if (searchLocation.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Location> editLocation(@RequestBody Location location) throws GlobalExcepction {
+        Location searchLocation = locationService.getLocationByID(location.getId());
+        if (searchLocation == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(searchLocation);
         }
 
-        locationService.editLocation(location);
-        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteLocationByID(@PathVariable Long id) {
-        Optional<Location> searchLocation = locationService.getLocationByID(id);
-
-        if (searchLocation.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteLocationByID(@PathVariable Long id) throws GlobalExcepction {
+        Location searchLocation = locationService.getLocationByID(id);
+        if (searchLocation == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         locationService.deleteLocationByID(id);
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.noContent().build();
     }
 }

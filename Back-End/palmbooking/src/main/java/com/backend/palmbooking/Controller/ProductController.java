@@ -1,7 +1,7 @@
 package com.backend.palmbooking.Controller;
 
 
-import com.backend.palmbooking.Exception.ProductNotFoundExcepction;
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Product;
 import com.backend.palmbooking.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/product")
@@ -29,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductByID(@PathVariable Long id) throws ProductNotFoundExcepction {
+    public ResponseEntity<Product> getProductByID(@PathVariable Long id) throws GlobalExcepction {
         Product product = productService.getProductByID(id);
         if (product == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -44,7 +43,7 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity<Product> editProduct(@RequestBody Product product) throws ProductNotFoundExcepction {
+    public ResponseEntity<Product> editProduct(@RequestBody Product product) throws GlobalExcepction {
         Product searchProduct = productService.getProductByID(product.getId());
         if (searchProduct == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -55,7 +54,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProductByID(@PathVariable Long id) throws ProductNotFoundExcepction {
+    public ResponseEntity<Void> deleteProductByID(@PathVariable Long id) throws GlobalExcepction {
         Product searchProduct = productService.getProductByID(id);
         if (searchProduct == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
