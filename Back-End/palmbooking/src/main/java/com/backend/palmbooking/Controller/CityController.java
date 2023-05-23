@@ -1,13 +1,15 @@
 package com.backend.palmbooking.Controller;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.City;
+import com.backend.palmbooking.Model.Location;
 import com.backend.palmbooking.Service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/city")
@@ -21,35 +23,38 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public Optional<City> getCityByID(@PathVariable Long id){
-        return cityService.getCityByID(id);
+    public ResponseEntity<City> getCityByID(@PathVariable Long id) throws GlobalExcepction {
+        City city = cityService.getCityByID(id);
+        if (city == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(city);
+        }
     }
 
     @PostMapping
-    public void addCity(@RequestBody City city){
+    public void addCity(@RequestBody City city) {
         cityService.addCity(city);
     }
 
     @PutMapping
-    public ResponseEntity<Void> editCity(@RequestBody City city) {
-        Optional<City> searchCity = cityService.getCityByID(city.getId());
-
-        if (searchCity.isEmpty()){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<City> editCity(@RequestBody City city) throws GlobalExcepction {
+        City searchCity = cityService.getCityByID(city.getId());
+        if (searchCity == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(searchCity);
         }
 
-        cityService.editCity(city);
-        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCityByID(@PathVariable Long id) {
-        Optional<City> searchCity = cityService.getCityByID(id);
-
-        if (searchCity.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteCityByID(@PathVariable Long id) throws GlobalExcepction {
+        City searchCity = cityService.getCityByID(id);
+        if (searchCity == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         cityService.deleteCityByID(id);
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.noContent().build();
     }
 }

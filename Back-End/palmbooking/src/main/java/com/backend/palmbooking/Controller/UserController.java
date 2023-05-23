@@ -1,13 +1,14 @@
 package com.backend.palmbooking.Controller;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.User;
 import com.backend.palmbooking.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/user")
@@ -17,40 +18,43 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getUser() {
+    public List<User> getProduct() {
         return userService.getUser();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUserByID(@PathVariable Long id) {
-        return userService.getUserByID(id);
+    public ResponseEntity<User> getUserByID(@PathVariable Long id) throws GlobalExcepction {
+        User user = userService.getUserByID(id);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        }
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
+    public void addProduct(@RequestBody User user) {
         userService.addUser(user);
     }
 
     @PutMapping
-    public ResponseEntity<Void> editUser(@RequestBody User user) {
-        Optional<User> searchUser = userService.getUserByID(user.getId());
-
-        if (searchUser.isEmpty()){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<User> editUser(@RequestBody User user) throws GlobalExcepction {
+        User searchUser = userService.getUserByID(user.getId());
+        if (searchUser == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(searchUser);
         }
 
-        userService.editUser(user);
-        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserByID(@PathVariable Long id) {
-        Optional<User> searchUser = userService.getUserByID(id);
-
-        if (searchUser.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteUserByID(@PathVariable Long id) throws GlobalExcepction {
+        User searchUser = userService.getUserByID(id);
+        if (searchUser == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         userService.deleteUserByID(id);
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.noContent().build();
     }
 }

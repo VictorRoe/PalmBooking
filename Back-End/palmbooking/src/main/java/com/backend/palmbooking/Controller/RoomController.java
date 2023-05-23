@@ -1,12 +1,13 @@
 package com.backend.palmbooking.Controller;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Room;
 import com.backend.palmbooking.Service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/room")
@@ -20,35 +21,38 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Room> getRoomByID(@PathVariable Long id){
-        return roomService.getRoomByID(id);
+    public ResponseEntity<Room> getRoomByID(@PathVariable Long id) throws GlobalExcepction {
+        Room room = roomService.getRoomByID(id);
+        if (room == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(room);
+        }
     }
 
     @PostMapping
-    public void addRoom(@RequestBody Room room){
+    public void addRoom(@RequestBody Room room) {
         roomService.addRoom(room);
     }
 
     @PutMapping
-    public ResponseEntity<Void> editRoom(@RequestBody Room room) {
-        Optional<Room> searchRoom = roomService.getRoomByID(room.getId());
-
-        if (searchRoom.isEmpty()){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Room> editRoom(@RequestBody Room room) throws GlobalExcepction {
+        Room searchRoom = roomService.getRoomByID(room.getId());
+        if (searchRoom == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(searchRoom);
         }
 
-        roomService.editRoom(room);
-        return ResponseEntity.status(202).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRoomByID(@PathVariable Long id) {
-        Optional<Room> searchRoom = roomService.getRoomByID(id);
-
-        if (searchRoom.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteRoomByID(@PathVariable Long id) throws GlobalExcepction {
+        Room searchRoom = roomService.getRoomByID(id);
+        if (searchRoom == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         roomService.deleteRoomByID(id);
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.noContent().build();
     }
 }

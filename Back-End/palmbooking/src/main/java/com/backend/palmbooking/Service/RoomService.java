@@ -1,5 +1,6 @@
 package com.backend.palmbooking.Service;
 
+import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Room;
 import com.backend.palmbooking.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +19,35 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
-    public Optional<Room> getRoomByID(Long id) {
-        return roomRepository.findById(id);
+    public Room getRoomByID(Long id) throws GlobalExcepction {
+        Optional<Room> searchRoom = roomRepository.findById(id);
+        if (searchRoom.isPresent()){
+            return searchRoom.get();
+        } else {
+            throw new GlobalExcepction("ID NOT FOUND");
+        }
     }
 
     public void addRoom(Room room) {
         roomRepository.save(room);
     }
 
-    public Room editRoom(Room room) {
+    public Room editRoom(Room room) throws GlobalExcepction {
         Optional<Room> editRoom = roomRepository.findById(room.getId());
-
         if (editRoom.isPresent()) {
             return roomRepository.save(room);
         } else {
-            System.out.println("No se encontro el producto");
+            throw new GlobalExcepction("ID NOT FOUND");
         }
-        return room;
+
     }
 
-    public void deleteRoomByID(Long id) {
+    public void deleteRoomByID(Long id) throws GlobalExcepction {
         Optional<Room> room = roomRepository.findById(id);
         if (room.isPresent()) {
             roomRepository.deleteById(id);
+        } else {
+            throw new GlobalExcepction("ID NOT FOUND");
         }
     }
 }
