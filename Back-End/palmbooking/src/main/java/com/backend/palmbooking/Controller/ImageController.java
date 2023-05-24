@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Image;
 import com.backend.palmbooking.Service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ImageController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Image> getImageByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Image> getImageByID(@PathVariable Long id) throws GlobalException {
         Image image = imageService.getImageByID(id);
         if (image == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -42,7 +42,7 @@ public class ImageController {
     }
 
     @PutMapping
-    public ResponseEntity<Image> editImage(@RequestBody Image image) throws GlobalExcepction {
+    public ResponseEntity<Image> editImage(@RequestBody Image image) throws GlobalException {
         Image searchImage = imageService.getImageByID(image.getId());
         if (searchImage == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -53,7 +53,7 @@ public class ImageController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteImageByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteImageByID(@PathVariable Long id) throws GlobalException {
         Image searchImage = imageService.getImageByID(id);
         if (searchImage == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

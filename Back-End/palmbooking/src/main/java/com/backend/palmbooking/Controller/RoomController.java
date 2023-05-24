@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Room;
 import com.backend.palmbooking.Service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Room> getRoomByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Room> getRoomByID(@PathVariable Long id) throws GlobalException {
         Room room = roomService.getRoomByID(id);
         if (room == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -36,7 +36,7 @@ public class RoomController {
     }
 
     @PutMapping
-    public ResponseEntity<Room> editRoom(@RequestBody Room room) throws GlobalExcepction {
+    public ResponseEntity<Room> editRoom(@RequestBody Room room) throws GlobalException {
         Room searchRoom = roomService.getRoomByID(room.getId());
         if (searchRoom == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -47,7 +47,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRoomByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteRoomByID(@PathVariable Long id) throws GlobalException {
         Room searchRoom = roomService.getRoomByID(id);
         if (searchRoom == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

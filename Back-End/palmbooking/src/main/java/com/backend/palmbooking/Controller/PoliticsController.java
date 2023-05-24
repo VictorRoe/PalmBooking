@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Politics;
 import com.backend.palmbooking.Service.PoliticsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class PoliticsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Politics> getPoliticsByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Politics> getPoliticsByID(@PathVariable Long id) throws GlobalException {
         Politics politics = politicsService.getPolicyID(id);
         if (politics == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -38,7 +38,7 @@ public class PoliticsController {
     }
 
     @PutMapping
-    public ResponseEntity<Politics> editPolitics(@RequestBody Politics politics) throws GlobalExcepction {
+    public ResponseEntity<Politics> editPolitics(@RequestBody Politics politics) throws GlobalException {
         Politics searchPolitics = politicsService.getPolicyID(politics.getId());
         if (searchPolitics == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -49,7 +49,7 @@ public class PoliticsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePoliticsByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deletePoliticsByID(@PathVariable Long id) throws GlobalException {
         Politics searchPolitics = politicsService.getPolicyID(id);
         if (searchPolitics == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

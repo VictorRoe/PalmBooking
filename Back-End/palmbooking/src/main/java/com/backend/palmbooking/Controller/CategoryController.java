@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Category;
 import com.backend.palmbooking.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Category> getCategoryByID(@PathVariable Long id) throws GlobalException {
         Category category = categoryService.getCategoryByID(id);
         if (category == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -43,7 +43,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<Category> editCategory(@RequestBody Category category) throws GlobalExcepction {
+    public ResponseEntity<Category> editCategory(@RequestBody Category category) throws GlobalException {
         Category searchCategory = categoryService.getCategoryByID(category.getId());
         if (searchCategory == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -54,7 +54,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategoryByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteCategoryByID(@PathVariable Long id) throws GlobalException {
         Category searchCategory = categoryService.getCategoryByID(id);
         if (searchCategory == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
