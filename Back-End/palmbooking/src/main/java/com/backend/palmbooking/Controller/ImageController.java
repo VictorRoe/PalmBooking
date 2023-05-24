@@ -61,4 +61,11 @@ public class ImageController {
         imageService.deleteImageByID(id);
         return ResponseEntity.noContent().build();
     }
+
+//    GET images by product id
+
+    @GetMapping("/{id_product_images}/images")
+    public List<Image>findImagesbyProductID(@PathVariable("id_product_images") Long id){
+        return imageService.findImagesByProductID(id);
+    }
 }
