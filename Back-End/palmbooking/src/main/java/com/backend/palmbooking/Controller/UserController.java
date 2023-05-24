@@ -43,7 +43,7 @@ public class UserController {
         if (searchUser == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchUser);
+            return ResponseEntity.status(HttpStatus.OK).body(userService.editUser(user));
         }
 
     }

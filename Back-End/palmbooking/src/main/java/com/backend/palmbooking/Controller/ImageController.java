@@ -47,7 +47,7 @@ public class ImageController {
         if (searchImage == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchImage);
+            return ResponseEntity.status(HttpStatus.OK).body(imageService.editImage(image));
         }
 
     }

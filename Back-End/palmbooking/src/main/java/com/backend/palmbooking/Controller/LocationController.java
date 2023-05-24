@@ -44,7 +44,7 @@ public class LocationController {
         if (searchLocation == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchLocation);
+            return ResponseEntity.status(HttpStatus.OK).body(locationService.editLocation(location));
         }
 
     }

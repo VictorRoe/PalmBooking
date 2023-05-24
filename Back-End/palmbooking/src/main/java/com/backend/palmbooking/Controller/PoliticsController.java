@@ -43,7 +43,7 @@ public class PoliticsController {
         if (searchPolitics == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchPolitics);
+            return ResponseEntity.status(HttpStatus.OK).body(politicsService.editPolicy(politics));
         }
 
     }
