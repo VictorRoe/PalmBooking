@@ -4,6 +4,7 @@ import com.backend.palmbooking.Exception.GlobalExcepction;
 import com.backend.palmbooking.Model.Image;
 import com.backend.palmbooking.Repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +54,11 @@ public class ImageService {
         } else {
             throw new GlobalExcepction("ID NOT FOUND");
         }
+    }
+
+//    GET Images by ProductID
+
+    public List<Image> findImagesByProductID(Long id){
+        return imageRepository.findImagesByProductID(id);
     }
 }

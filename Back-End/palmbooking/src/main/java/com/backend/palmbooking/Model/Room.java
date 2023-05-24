@@ -16,8 +16,10 @@ public class Room {
     @Column
     private Integer roomQuantity;
 
-    @OneToMany(mappedBy = "room")
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    private Product product;
+
 
     public Room() {
     }

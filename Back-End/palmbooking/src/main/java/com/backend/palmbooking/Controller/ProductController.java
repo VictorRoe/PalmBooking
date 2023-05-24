@@ -48,7 +48,7 @@ public class ProductController {
         if (searchProduct == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-          return ResponseEntity.status(HttpStatus.OK).body(searchProduct);
+          return ResponseEntity.status(HttpStatus.OK).body(productService.editProduct(product));
         }
 
     }

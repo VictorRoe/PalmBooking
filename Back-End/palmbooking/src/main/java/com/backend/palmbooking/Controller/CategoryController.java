@@ -48,7 +48,7 @@ public class CategoryController {
         if (searchCategory == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchCategory);
+            return ResponseEntity.status(HttpStatus.OK).body(categoryService.editCategory(category));
         }
 
     }

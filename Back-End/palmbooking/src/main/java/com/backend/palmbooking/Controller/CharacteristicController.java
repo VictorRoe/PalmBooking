@@ -43,7 +43,7 @@ public class CharacteristicController {
         if (searchCharacteristic == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchCharacteristic);
+            return ResponseEntity.status(HttpStatus.OK).body(characteristicService.editCharacteristic(characteristic));
         }
 
     }

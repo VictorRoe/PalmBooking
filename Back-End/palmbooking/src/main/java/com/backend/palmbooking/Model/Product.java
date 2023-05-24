@@ -2,6 +2,8 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -31,9 +33,11 @@ public class Product {
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id", referencedColumnName = "id")
-    private Room room;
+    @OneToMany(mappedBy = "product")
+    private List<Room> rooms;
+
+    @OneToMany(mappedBy = "product")
+    private List<Image> images;
 
     public Product() {
     }

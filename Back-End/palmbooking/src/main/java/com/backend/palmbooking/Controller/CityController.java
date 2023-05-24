@@ -43,7 +43,7 @@ public class CityController {
         if (searchCity == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchCity);
+            return ResponseEntity.status(HttpStatus.OK).body(cityService.editCity(city));
         }
 
     }

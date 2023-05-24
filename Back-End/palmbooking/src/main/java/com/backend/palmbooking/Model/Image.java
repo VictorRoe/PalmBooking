@@ -13,6 +13,10 @@ public class Image {
     @Column(name = "image_url", length = 150)
     private String image_url;
 
+    @ManyToOne
+    @JoinColumn(name = "product_image_id", referencedColumnName = "id")
+    private Product product;
+
     public Image() {
     }
 

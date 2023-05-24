@@ -41,7 +41,7 @@ public class RoomController {
         if (searchRoom == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body(searchRoom);
+            return ResponseEntity.status(HttpStatus.OK).body(roomService.editRoom(room));
         }
 
     }
