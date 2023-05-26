@@ -24,7 +24,7 @@ jobs:
       run: ls -al
 
     - name: Build and test with Maven
-      run: cd Back-End/palmbooking && mvn clean test
+      run: cd Back-End && ls -al && mvn clean test
 
     - name: Package application
       run: mvn clean package
