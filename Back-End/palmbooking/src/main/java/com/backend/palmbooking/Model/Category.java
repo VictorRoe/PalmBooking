@@ -62,4 +62,5 @@ public class Category {
     public void setImagen(String imagen) {
         this.image = imagen;
     }
+    
 }
