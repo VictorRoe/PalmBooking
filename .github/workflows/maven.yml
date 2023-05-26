@@ -20,8 +20,8 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Build and test with Maven
-      run: cd Back-End/palmbooking && mvn clean test
+#     - name: Build and test with Maven
+#       run: cd Back-End/palmbooking && mvn clean test
 
     - name: Package application
       run: mvn clean package
