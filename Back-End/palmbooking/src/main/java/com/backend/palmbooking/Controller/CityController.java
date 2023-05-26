@@ -1,8 +1,7 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.City;
-import com.backend.palmbooking.Model.Location;
 import com.backend.palmbooking.Service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<City> getCityByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<City> getCityByID(@PathVariable Long id) throws GlobalException {
         City city = cityService.getCityByID(id);
         if (city == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -38,7 +37,7 @@ public class CityController {
     }
 
     @PutMapping
-    public ResponseEntity<City> editCity(@RequestBody City city) throws GlobalExcepction {
+    public ResponseEntity<City> editCity(@RequestBody City city) throws GlobalException {
         City searchCity = cityService.getCityByID(city.getId());
         if (searchCity == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -49,7 +48,7 @@ public class CityController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCityByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteCityByID(@PathVariable Long id) throws GlobalException {
         City searchCity = cityService.getCityByID(id);
         if (searchCity == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.User;
 import com.backend.palmbooking.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<User> getUserByID(@PathVariable Long id) throws GlobalException {
         User user = userService.getUserByID(id);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<User> editUser(@RequestBody User user) throws GlobalExcepction {
+    public ResponseEntity<User> editUser(@RequestBody User user) throws GlobalException {
         User searchUser = userService.getUserByID(user.getId());
         if (searchUser == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteUserByID(@PathVariable Long id) throws GlobalException {
         User searchUser = userService.getUserByID(id);
         if (searchUser == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

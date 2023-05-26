@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Service;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.City;
 import com.backend.palmbooking.Repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class CityService {
         return cityRepository.findAll();
     }
 
-    public City getCityByID(Long id) throws GlobalExcepction {
+    public City getCityByID(Long id) throws GlobalException {
         Optional<City> searchCity = cityRepository.findById(id);
         if (searchCity.isPresent()){
             return searchCity.get();
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 
@@ -36,22 +36,22 @@ public class CityService {
         cityRepository.save(city);
     }
 
-    public City editCity(City city) throws GlobalExcepction {
+    public City editCity(City city) throws GlobalException {
         Optional<City> editCity = cityRepository.findById(city.getId());
         if (editCity.isPresent()) {
             return cityRepository.save(city);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
 
     }
 
-    public void deleteCityByID(Long id) throws GlobalExcepction {
+    public void deleteCityByID(Long id) throws GlobalException {
         Optional<City> city = cityRepository.findById(id);
         if (city.isPresent()) {
             cityRepository.deleteById(id);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 }

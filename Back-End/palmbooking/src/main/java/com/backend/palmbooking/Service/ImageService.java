@@ -1,10 +1,9 @@
 package com.backend.palmbooking.Service;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Image;
 import com.backend.palmbooking.Repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,12 +23,12 @@ public class ImageService {
         return imageRepository.findAll();
     }
 
-    public Image getImageByID(Long id) throws GlobalExcepction {
+    public Image getImageByID(Long id) throws GlobalException {
         Optional<Image> searchImage = imageRepository.findById(id);
         if (searchImage.isPresent()){
             return searchImage.get();
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 
@@ -37,22 +36,22 @@ public class ImageService {
         imageRepository.save(image);
     }
 
-    public Image editImage(Image image) throws GlobalExcepction {
+    public Image editImage(Image image) throws GlobalException {
         Optional<Image> editImage = imageRepository.findById(image.getId());
         if (editImage.isPresent()) {
             return imageRepository.save(image);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
 
     }
 
-    public void deleteImageByID(Long id) throws GlobalExcepction {
+    public void deleteImageByID(Long id) throws GlobalException {
         Optional<Image> image = imageRepository.findById(id);
         if (image.isPresent()) {
             imageRepository.deleteById(id);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 

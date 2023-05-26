@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Service;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Category;
 import com.backend.palmbooking.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryByID(Long id) throws GlobalExcepction {
+    public Category getCategoryByID(Long id) throws GlobalException {
         Optional<Category> searchCategories = categoryRepository.findById(id);
         if (searchCategories.isPresent()){
             return searchCategories.get();
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 
@@ -36,22 +36,22 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public Category editCategory(Category category) throws GlobalExcepction {
+    public Category editCategory(Category category) throws GlobalException {
         Optional<Category> editCategory = categoryRepository.findById(category.getId());
         if (editCategory.isPresent()) {
             return categoryRepository.save(category);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
 
     }
 
-    public void deleteCategoryByID(Long id) throws GlobalExcepction {
+    public void deleteCategoryByID(Long id) throws GlobalException {
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()) {
             categoryRepository.deleteById(id);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 

@@ -2,6 +2,8 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table (name = "policies")
 public class Politics {
@@ -12,6 +14,12 @@ public class Politics {
 
     @Column(name = "politics")
     private String politics;
+
+    @ManyToMany
+    @JoinTable(name = "politics_product",
+            joinColumns = @JoinColumn(name = "politics_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products;
 
     public Politics() {
     }

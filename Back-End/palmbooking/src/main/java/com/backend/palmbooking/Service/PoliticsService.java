@@ -1,7 +1,6 @@
 package com.backend.palmbooking.Service;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
-import com.backend.palmbooking.Model.Location;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Politics;
 import com.backend.palmbooking.Repository.PoliticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,12 @@ public class PoliticsService {
         return politicsRepository.findAll();
     }
 
-    public Politics getPolicyID(Long id) throws GlobalExcepction {
+    public Politics getPolicyID(Long id) throws GlobalException {
         Optional<Politics> searchPolicy = politicsRepository.findById(id);
         if (searchPolicy.isPresent()){
             return searchPolicy.get();
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 
@@ -33,22 +32,22 @@ public class PoliticsService {
         politicsRepository.save(politics);
     }
 
-    public Politics editPolicy(Politics politics) throws GlobalExcepction {
+    public Politics editPolicy(Politics politics) throws GlobalException {
         Optional<Politics> editPolicy = politicsRepository.findById(politics.getId());
         if (editPolicy.isPresent()) {
             return politicsRepository.save(politics);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
 
     }
 
-    public void deletePolicyByID(Long id) throws GlobalExcepction {
+    public void deletePolicyByID(Long id) throws GlobalException {
         Optional<Politics> politics = politicsRepository.findById(id);
         if (politics.isPresent()) {
             politicsRepository.deleteById(id);
         } else {
-            throw new GlobalExcepction("ID NOT FOUND");
+            throw new GlobalException("ID NOT FOUND");
         }
     }
 }

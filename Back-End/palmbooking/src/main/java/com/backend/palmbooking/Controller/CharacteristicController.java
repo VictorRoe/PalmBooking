@@ -1,6 +1,6 @@
 package com.backend.palmbooking.Controller;
 
-import com.backend.palmbooking.Exception.GlobalExcepction;
+import com.backend.palmbooking.Exception.GlobalException;
 import com.backend.palmbooking.Model.Characteristic;
 import com.backend.palmbooking.Service.CharacteristicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CharacteristicController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Characteristic> getCharacteristicByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Characteristic> getCharacteristicByID(@PathVariable Long id) throws GlobalException {
         Characteristic characteristic = characteristicService.getCharacteristicByID(id);
         if (characteristic == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -38,7 +38,7 @@ public class CharacteristicController {
     }
 
     @PutMapping
-    public ResponseEntity<Characteristic> editCharacteristic(@RequestBody Characteristic characteristic) throws GlobalExcepction {
+    public ResponseEntity<Characteristic> editCharacteristic(@RequestBody Characteristic characteristic) throws GlobalException {
         Characteristic searchCharacteristic = characteristicService.getCharacteristicByID(characteristic.getId());
         if (searchCharacteristic == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -49,7 +49,7 @@ public class CharacteristicController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCharacteristicByID(@PathVariable Long id) throws GlobalExcepction {
+    public ResponseEntity<Void> deleteCharacteristicByID(@PathVariable Long id) throws GlobalException {
         Characteristic searchCharacteristic = characteristicService.getCharacteristicByID(id);
         if (searchCharacteristic == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
