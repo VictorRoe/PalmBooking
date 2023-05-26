@@ -19,12 +19,9 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
-        
-    - name: List directory contents
-      run: ls -al
 
     - name: Build and test with Maven
-      run: cd Back-End && ls -al && mvn clean test
+      run: cd Back-End/palmbooking && ls -al && mvn clean test
 
     - name: Package application
       run: mvn clean package
