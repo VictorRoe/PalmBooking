@@ -21,7 +21,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Build and test with Maven
-      run: mvn clean test
+      run: cd Back-End/palmbooking && mvn clean test
 
     - name: Package application
       run: mvn clean package
