@@ -62,4 +62,10 @@ public class ProductController {
         productService.deleteProductByID(id);
         return ResponseEntity.noContent().build();
     }
+
+//    GET (findProductByCityID)
+    @GetMapping("/{id_city}/city")
+    List<Product> findProductByCityID(@PathVariable("id_city") Long id){
+        return productService.findProductByCityID(id);
+    }
 }

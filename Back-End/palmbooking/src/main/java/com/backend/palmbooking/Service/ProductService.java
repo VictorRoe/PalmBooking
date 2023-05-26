@@ -54,4 +54,9 @@ public class ProductService {
             throw new GlobalException("ID NOT FOUND");
         }
     }
+
+//    GET (findProductByCityID)
+    public List<Product> findProductByCityID(Long id){
+        return productRepository.findProductByCityID(id);
+    }
 }
