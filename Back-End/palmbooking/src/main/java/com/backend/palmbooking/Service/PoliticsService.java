@@ -50,4 +50,10 @@ public class PoliticsService {
             throw new GlobalException("ID NOT FOUND");
         }
     }
+
+    //    GET (policy by product ID)
+
+    public List<Politics> getPoliticsByProductID(Long id){
+        return politicsRepository.findPoliticsByProductID(id);
+    }
 }

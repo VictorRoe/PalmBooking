@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Policy")
+@RequestMapping("api/policy")
 public class PoliticsController {
 
     @Autowired
@@ -56,5 +56,12 @@ public class PoliticsController {
         }
         politicsService.deletePolicyByID(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //    GET (get politics by product id)
+
+    @GetMapping("/{id_product}/politics")
+    List<Politics> getPoliticsByProductID(@PathVariable("id_product") Long id){
+        return politicsService.getPoliticsByProductID(id);
     }
 }
