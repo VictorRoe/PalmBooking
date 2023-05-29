@@ -15,10 +15,7 @@ public class Politics {
     @Column(name = "politics")
     private String politics;
 
-    @ManyToMany
-    @JoinTable(name = "politics_product",
-            joinColumns = @JoinColumn(name = "politics_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @OneToMany(mappedBy = "politics")
     private List<Product> products;
 
     public Politics() {

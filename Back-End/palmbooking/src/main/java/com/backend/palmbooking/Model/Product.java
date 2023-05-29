@@ -39,8 +39,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Image> images;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Politics> politics;
+    @ManyToOne
+    @JoinColumn(name = "policy_id")
+    private Politics politics;
+    
     public Product() {
     }
 
