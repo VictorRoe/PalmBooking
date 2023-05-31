@@ -1,11 +1,20 @@
 package com.backend.palmbooking.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "rooms")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Room {
 
     @Id
@@ -16,40 +25,9 @@ public class Room {
     @Column
     private Integer roomQuantity;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
-
-    public Room() {
-    }
-
-    public Room(String roomType, Integer roomQuantity) {
-        this.roomType = roomType;
-        this.roomQuantity = roomQuantity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public Integer getRoomQuantity() {
-        return roomQuantity;
-    }
-
-    public void setRoomQuantity(Integer roomQuantity) {
-        this.roomQuantity = roomQuantity;
-    }
 }

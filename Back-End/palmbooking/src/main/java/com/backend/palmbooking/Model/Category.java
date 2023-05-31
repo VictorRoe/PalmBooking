@@ -1,12 +1,21 @@
 package com.backend.palmbooking.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "categories")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
@@ -19,48 +28,8 @@ public class Category {
     @Column(name = "image")
     private String image;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 
-    public Category() {
-    }
-
-    public Category(String title, String description, String image) {
-        this.title = title;
-        this.description = description;
-        this.image = image;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return title;
-    }
-
-    public void setTitulo(String titulo) {
-        this.title = titulo;
-    }
-
-    public String getDescripcion() {
-        return description;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.description = descripcion;
-    }
-
-    public String getImagen() {
-        return image;
-    }
-
-    public void setImagen(String imagen) {
-        this.image = imagen;
-    }
-    
 }

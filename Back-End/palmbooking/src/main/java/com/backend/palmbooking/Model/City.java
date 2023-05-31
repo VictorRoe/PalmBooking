@@ -1,11 +1,20 @@
 package com.backend.palmbooking.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "cities")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class City {
 
     @Id
@@ -14,29 +23,7 @@ public class City {
     @Column(name = "city_name", length = 50)
     private String city;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
-    private List<Product>product;
-
-    public City() {
-    }
-
-    public City(String city) {
-        this.city = city;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
+    private List<Product> product;
 }
