@@ -2,7 +2,9 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -40,9 +42,17 @@ public class Product {
     private List<Image> images;
 
     @ManyToOne
-    @JoinColumn(name = "policy_id")
+    @JoinColumn(name = "policy_id", referencedColumnName = "id")
     private Politics politics;
-    
+
+    @ManyToMany
+    @JoinTable(name = "product_characteristic",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "characteristic_id")
+    )
+    private Set<Characteristic> characteristic = new HashSet<>();
+
+
     public Product() {
     }
 

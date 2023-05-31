@@ -3,6 +3,10 @@ package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "characteristics")
 public class Characteristic {
@@ -13,6 +17,9 @@ public class Characteristic {
 
     @Column(name = "characteristic", length = 50)
     private String characteristic;
+
+    @ManyToMany(mappedBy = "characteristic")
+    private Set<Product> product = new HashSet<>();
 
     public Characteristic() {
     }
