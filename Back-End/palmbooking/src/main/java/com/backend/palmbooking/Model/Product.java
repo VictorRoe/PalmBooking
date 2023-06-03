@@ -62,4 +62,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "characteristic_id")
     )
     private Set<Characteristic> characteristic = new HashSet<>();
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "product")
+    private Booking booking;
 }
