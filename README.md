@@ -13,7 +13,7 @@ Para instalar y ejecutar PalmBooking en tu equipo local, sigue los siguientes pa
 1. Clona o Descarga el repositorio de GitHub en tu equipo local.
 2. Las dependencias ya estaran incorporadas en el `` .pom ``
 3. Crea un archivo .env.local con las variables de entorno necesarias $SQL_URL, $SQL_USER, $SQL_PASSWORD y agrega los datos necesarios en tu equipo local.
-4. Ejecuta la aplicación con el IDE que estes usando. De lo contrario, levantar con Docker(Proximamente) o ejecutando desde la terminal ubicado en `` /PalmBooking/Back-End/palmbooking `` -> mvn package -> java -jar target/palmbooking-0.0.1-SNAPSHOT.jar.
+4. Ejecuta la aplicación con el IDE que estes usando. De lo contrario, levantar con Docker(Proximamente) o ejecutando desde la terminal ubicado en `` /PalmBooking/Back-End/palmbooking `` ->`` mvn package `` -> `` java -jar target/palmbooking-0.0.1-SNAPSHOT.jar. ``
 
 ## Licencia
 
