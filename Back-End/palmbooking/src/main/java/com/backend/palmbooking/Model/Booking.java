@@ -34,9 +34,13 @@ public class Booking {
     @Temporal(TemporalType.TIME)
     private LocalTime booking_time;
 
-    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
+
+    @OneToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    private Room room;
+
 
 }

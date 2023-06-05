@@ -20,14 +20,18 @@ public class BookingController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("product/{product_id}")
-    public Booking createBooking(@PathVariable("product_id") Long productID,
-                                 @RequestBody Booking booking){
-        return bookingService.addreservation(productID,booking);
+    @PostMapping("product/{product_id}/room/{room_id}")
+    public ResponseEntity<Booking> createBooking(
+            @PathVariable("product_id") Long productID,
+            @PathVariable("room_id") Long roomID,
+            @RequestBody Booking booking) {
+        Booking newBooking = bookingService.addreservation(productID,roomID,booking);
+        return ResponseEntity.ok(newBooking);
     }
 
+
     @GetMapping
-    public List<Booking> getReservation(){
+    public List<Booking> getReservation() {
         return bookingService.getAllReservation();
     }
 }
