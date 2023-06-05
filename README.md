@@ -1,8 +1,4 @@
-# PalmBooking <img src="./logo.png" with=40px height=100x>
-
-
-
-
+# PalmBooking
 
 PalmBooking es un sistema de reservas de hoteles, que permite a los usuarios buscar y reservar habitaciones. Este proyecto se ha desarrollado utilizando tecnología Back-End como: Spring Boot, MySQL (Local), PostgreSQL (Producción), JPA, Web, Security. Y lenguaje de programacion: Java.
 
@@ -31,3 +27,6 @@ El proyecto está en fase de desarrollo.
 
 * Esquema de la base de datos PalmBooking [Link aqui](https://drive.google.com/file/d/1PHd5_5hHSNCF50Od9svrL5GkL_6banWl/view?usp=sharing)
 * Para obtener más información sobre cómo utilizar las APIs en el proyecto PalmBooking, consulta la documentación en línea en ** PROXIMAMENTE **
+<p align="center">
+   <img src="./logo.png" alt="logo" with=40px height=100x>
+</p>
