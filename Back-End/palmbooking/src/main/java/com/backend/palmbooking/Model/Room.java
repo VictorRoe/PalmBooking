@@ -30,4 +30,8 @@ public class Room {
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "room")
+    private Booking booking;
+
 }
