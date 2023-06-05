@@ -1,11 +1,19 @@
 package com.backend.palmbooking.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "locations")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Location {
 
     @Id
@@ -16,39 +24,4 @@ public class Location {
     private Float length;
     @Column(name = "latitude")
     private Float latitude;
-
-    public Location() {
-    }
-
-    public Location(Float length, Float latitude) {
-        this.length = length;
-        this.latitude = latitude;
-    }
-
-    @OneToMany(mappedBy = "location")
-    private List<Product> products;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getLength() {
-        return length;
-    }
-
-    public void setLength(Float length) {
-        this.length = length;
-    }
-
-    public Float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
 }

@@ -1,10 +1,23 @@
 package com.backend.palmbooking.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "characteristics")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Characteristic {
 
     @Id
@@ -14,26 +27,7 @@ public class Characteristic {
     @Column(name = "characteristic", length = 50)
     private String characteristic;
 
-    public Characteristic() {
-    }
-
-    public Characteristic(String characteristic) {
-        this.characteristic = characteristic;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCharacteristic() {
-        return characteristic;
-    }
-
-    public void setCharacteristic(String characteristic) {
-        this.characteristic = characteristic;
-    }
+    @JsonIgnore
+    @ManyToMany(mappedBy = "characteristic")
+    private Set<Product> product = new HashSet<>();
 }

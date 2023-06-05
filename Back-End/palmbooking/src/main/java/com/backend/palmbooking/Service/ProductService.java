@@ -55,8 +55,4 @@ public class ProductService {
         }
     }
 
-//    GET (findProductByCityID)
-    public List<Product> findProductByCityID(Long id){
-        return productRepository.findProductByCityID(id);
-    }
 }
