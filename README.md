@@ -26,7 +26,7 @@ El proyecto está en fase de desarrollo.
 ## Documentación adicional
 
 * Esquema de la base de datos PalmBooking [Link aqui](https://drive.google.com/file/d/1PHd5_5hHSNCF50Od9svrL5GkL_6banWl/view?usp=sharing)
-* Para obtener más información sobre cómo utilizar las APIs en el proyecto PalmBooking, consulta la documentación en línea en ** PROXIMAMENTE **
+* Para obtener más información sobre cómo utilizar las APIs en el proyecto PalmBooking, consulta la documentación en línea con el endpoint con la app inicializada ``` /doc/swagger-ui/index.html#/ ``` 
 <p align="center">
    <img src="./logo.png" alt="logo" with=40px height=100x>
 </p>
