@@ -1,11 +1,12 @@
 package com.backend.palmbooking.Config;
 
 import com.backend.palmbooking.Repository.UserRepository;
-import com.mysql.cj.protocol.AuthenticationProvider;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,10 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ApplicationConfig {
 
     private UserRepository userRepository;
+
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -25,13 +27,13 @@ public class ApplicationConfig {
                 .orElseThrow(() -> new UsernameNotFoundException("User Not found"));
     }
 
-//    Posible error en el return
+
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
-        return (AuthenticationProvider) authProvider;
+        return authProvider;
     }
 
     @Bean
