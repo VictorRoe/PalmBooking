@@ -38,6 +38,7 @@ public class CategoryController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void addCategory(@RequestBody Category category) {
         categoryService.addCategory(category);
     }
