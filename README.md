@@ -17,7 +17,7 @@ Este proyecto se distribuye bajo la licencia MIT.
 
 ## Estado del proyecto
 
-El proyecto está en fase de desarrollo.
+El proyecto está en fase de cierre.
 
 ## Autores
 
